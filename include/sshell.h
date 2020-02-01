@@ -14,6 +14,8 @@
 
 #define CFG_FILE "shconfig"
 
+extern int demon;
+
 typedef	struct		s_env
 {
 	char			*name;
@@ -21,7 +23,9 @@ typedef	struct		s_env
 	struct s_env	*next;
 }					t_env;
 
-void				save_cfg(char *line)
+t_env				*envi;
+
+void				save_cfg(char *line);
 int					execute_cmd(char *line);
 void				start_prompt();
 int					sh_init();
@@ -32,6 +36,7 @@ int					getmoreenvi(char *name);
 void				more(FILE *fp, int v, int h);
 int					sshell_more(char **args);
 int					do_builtin(char **args);
-void				do_demon(char *args);
+char				**split_cmd(char *line);
+void				do_demon(char **args);
 
 #endif
